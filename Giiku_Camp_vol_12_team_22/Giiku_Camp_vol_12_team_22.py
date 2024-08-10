@@ -17,6 +17,7 @@ def index() -> rx.Component:
         rx.color_mode.button(position="top-right"),
     )
 
+テスト
 
 app = rx.App()
 app.add_page(index)S
