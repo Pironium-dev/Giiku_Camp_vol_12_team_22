@@ -7,7 +7,7 @@ from rxconfig import config
 PYTHON_OPTIONS = (('Pythonicな',), ('蛇使いの', '空飛ぶモンティ・パイソン好きの'), ('とぐろ', 'イッツマン'))
 HOKKAIDO_OPTIONS = (('海産物系の', ), ('木彫りの', '牛乳製の', '道産子'), ('熊', 'シャケ', 'ぼっこ', 'マグロ'))
 
-KYUSHU_OPTION = (('暖かい', ''), ('ハウステンボス', 'マンゴー'), ('の湯', '島'))
+KYUSHU_OPTIONS = (('暖かい', '熊本の'), ('ハウステンボス', 'マンゴー'), ('の湯', '島'))
 
 class State(rx.State):
     generated_name = ''
@@ -39,6 +39,14 @@ class State(rx.State):
             case 'Python':
                 for i, j in zip((self.head_options, self.middle_options, self.tail_options), PYTHON_OPTIONS):
                     i.extend(j)
+            case 'C':
+                pass
+            case 'Java':
+                pass
+            case 'JavaScript':
+                pass
+            case 'Go':
+                pass
     
     def _add_options_of_region(self, r:str):
         match r:
@@ -50,6 +58,9 @@ class State(rx.State):
             case '関西':
                 pass
             case '九州':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), KYUSHU_OPTIONS):
+                    i.extend(j)
             case '中国・四国':
+                pass
+            case '中部':
                 pass
