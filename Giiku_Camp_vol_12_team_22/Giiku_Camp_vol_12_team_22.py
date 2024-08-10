@@ -21,7 +21,6 @@ class State(rx.State):
         print(self.generated_name) ## デバッグ用
     
     def _choice(self, index):
-        self._add_options_of_language('Python')
         if index == 0:
             option = random.choice(self.head_options)
         elif index == 1:
