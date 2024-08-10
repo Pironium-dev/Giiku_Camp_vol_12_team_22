@@ -9,9 +9,9 @@ PYTHON_OPTIONS = (('Pythonicな',), ('蛇使いの', '空飛ぶモンティ・�
 class State(rx.State):
     generated_name = ''
 
-    head_options = []
-    middle_options = []
-    tail_options = []
+    head_options = ["僕の", "駆け出し", "新しい", "大人の", "スペシャル", "動的", "ふつうの", "自称", "Dr.", "新しい"]
+    middle_options = ["ヒーロー", "学校", "研究", "明太子", "虎ノ門", "Youtube", "無課金", "サッカー", "キーボード", "ライブ"]
+    tail_options = ["部", ".txt", "同好会", "（仮）", "アカデミア", "中毒", "のリーダーズ", "のために", "w", "・改"]
     def generate_team_name(self):
         self._add_options_of_language('Python')
         if random.randint(0, 3) == 0:
