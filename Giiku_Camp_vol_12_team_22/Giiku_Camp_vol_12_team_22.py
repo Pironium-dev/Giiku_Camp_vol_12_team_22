@@ -6,6 +6,8 @@ from rxconfig import config
 ## 質問により追加される単語
 PYTHON_OPTIONS = (('Pythonicな',), ('蛇使いの', '空飛ぶモンティ・パイソン好きの'), ('とぐろ', 'イッツマン'))
 
+KYUSHU_OPTION = (('暖かい', ''), ('ハウステンボス', 'マンゴー'), ('の湯', '島'))
+
 class State(rx.State):
     generated_name = ''
 
