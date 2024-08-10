@@ -28,8 +28,6 @@ def index() -> rx.Component:
         padding="2em"
     )
 
-    
-
 def index2() -> rx.Component:
     # Second Page (Index2)
     return rx.container(
@@ -44,4 +42,4 @@ def index2() -> rx.Component:
 app = rx.App()
 app.add_page(index, route="/index")
 app.add_page(index2, route="/index2")
-
+app.compile()
