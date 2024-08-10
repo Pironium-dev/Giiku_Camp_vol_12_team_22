@@ -24,7 +24,6 @@ def index() -> rx.Component:
         ),
         padding="2em"
     )
-a
-
+確認テスト
 app = rx.App()
 app.add_page(index)
