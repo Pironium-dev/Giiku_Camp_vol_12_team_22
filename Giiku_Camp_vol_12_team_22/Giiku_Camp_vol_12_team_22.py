@@ -27,7 +27,7 @@ def index() -> rx.Component:
         ),
         padding="2em"
     )
-
+z
     
 
 def index2() -> rx.Component:
