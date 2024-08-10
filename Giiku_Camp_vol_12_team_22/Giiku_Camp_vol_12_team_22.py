@@ -36,16 +36,19 @@ class State(rx.State):
     def _add_options_of_language(self, l:str):
         match l:
             case 'Python':
-                self.head_options.extend(PYTHON_OPTIONS[0])
-                self.middle_options.extend(PYTHON_OPTIONS[1])
-                self.tail_options.extend(PYTHON_OPTIONS[2])
-
-def index() -> rx.Component:
-    return rx.container(
-        rx.color_mode.button(position="top-right"),
-        rx.button('test', on_click=State.generate_team_name)
-    )
-
-
-app = rx.App()
-app.add_page(index)
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), PYTHON_OPTIONS):
+                    i.extend(j)
+    
+    def _add_options_of_region(self, r:str):
+        match r:
+            case '北海道・東北':
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), HOKKAIDO_OPTIONS):
+                    i.extend(j)
+            case '関東':
+                pass
+            case '関西':
+                pass
+            case '九州':
+                pass
+            case '中国・四国':
+                pass
