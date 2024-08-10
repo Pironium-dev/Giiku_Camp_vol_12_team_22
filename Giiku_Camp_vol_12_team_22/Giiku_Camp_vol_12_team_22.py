@@ -25,6 +25,7 @@ class State(rx.State):
             option = random.choice(self.middle_options)
         else:
             option = random.choice(self.tail_options)
+            print(option)
 
         return option
 
