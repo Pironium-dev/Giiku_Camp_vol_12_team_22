@@ -64,3 +64,13 @@ class State(rx.State):
                 pass
             case '中部':
                 pass
+
+def index() -> rx.Component:
+    return rx.container(
+        rx.color_mode.button(position="top-right"),
+        rx.button('test', on_click=State.generate_team_name)
+    )
+
+
+app = rx.App()
+app.add_page(index)
