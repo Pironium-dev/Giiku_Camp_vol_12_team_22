@@ -14,7 +14,7 @@ class State(rx.State):
         
         
 def index() -> rx.Component:
-    # Second Page (Index2)
+    #タイトル画面
     return rx.container(
         rx.vstack(
             rx.heading("チーム名生成アプリ"),
@@ -29,12 +29,16 @@ def index() -> rx.Component:
     )
 
 def index2() -> rx.Component:
-    # Welcome Page (Index)
+    #メイン画面
     return rx.container(
         rx.vstack(
             rx.heading("チーム名生成アプリ"),
             rx.text("ボタンをクリックするとチーム名を生成します:"),
-            rx.button("名前", on_click=State.generate_team_name),
+            rx.button("生成", on_click=State.generate_team_name),
+            rx.link(
+            rx.button("戻る", bg="red", color="white", padding="0.5em 1em", margin_top="2em"),
+                href="/"
+            ),
             rx.text(State.generated_name, font_size="2em", margin_top="1em"),
 
             rx.color_mode.button(position="top-right"),
