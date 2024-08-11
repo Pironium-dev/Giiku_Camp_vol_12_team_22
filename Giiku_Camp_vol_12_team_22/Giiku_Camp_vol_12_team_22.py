@@ -34,6 +34,8 @@ KYUSHU_OPTIONS = (("暖かい", "熊本の"), ("ハウステンボス", "マン�
 
 class State(rx.State):
     generated_name = ""
+    language = ''
+    region = ''
 
     head_options = [
         "僕の",
@@ -81,6 +83,9 @@ class State(rx.State):
     ]
 
     def generate_team_name(self):
+        self._add_options_of_region(self.region)
+        self._add_options_of_language(self.language)
+        
         if random.randint(0, 3) == 0:
             self.generated_name = self._choice(1) + self._choice(2)
         else:
@@ -166,8 +171,15 @@ class State(rx.State):
                     THUUBU_OPTIONS,
                 ):
                     i.extend(j)
+    
     def do_nothing(self):
         pass
+    
+    def change_laungage(self, s):
+        self.language = s
+    
+    def change_region(self, s):
+        self.region = s
 
 class UIHelper:
     """共通のUI要素を作成するヘルパークラス"""
@@ -272,6 +284,7 @@ def index2() -> rx.Component:
                     adjectives,
                     placeholder="Select favorite language",
                     label="language",
+                    on_change=State.change_laungage
                 ),
                 UIHelper.create_button("次へ", href="/index3", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
@@ -293,6 +306,7 @@ def index3() -> rx.Component:
                     prefectures,
                     placeholder="Select favorite area",
                     label="area",
+                    on_change=State.change_region
                 ),
                 UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
