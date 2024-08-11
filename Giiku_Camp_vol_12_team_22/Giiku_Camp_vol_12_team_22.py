@@ -144,14 +144,16 @@ def index3() -> rx.Component:
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
     )
     
+    
 def index4() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("チーム名生成アプリ"),
-                UIHelper.create_text("ボタンをクリックして、あなたのチーム名を生成しましょう！"),
-                UIHelper.create_button("スタート", href="/index2", font_size="2em"),
-                UIHelper.create_rule_box(""),
+                UIHelper.create_page_heading("せいせい"),
+                UIHelper.create_text("生成しました。"),
+                UIHelper.create_button("更新", href="/index4", font_size="3em"),
+                UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
+                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリッしてください！"),
             ),
         ),
         padding="4em",
@@ -160,9 +162,10 @@ def index4() -> rx.Component:
     )
 
 
+
 app = rx.App()
 app.add_page(index1, route="/index1")
 app.add_page(index2, route="/index2")
 app.add_page(index3, route="/index3")
-app.add_page(index3, route="/index4")
+app.add_page(index4, route="/index4")
 
