@@ -294,7 +294,7 @@ def index3() -> rx.Component:
                     placeholder="Select favorite area",
                     label="area",
                 ),
-                UIHelper.create_button("生成", href="/index4", font_size="3em"),
+                UIHelper.create_button("次へ", href="/index4", font_size="2em"),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
                 UIHelper.create_rule_box("地方を選択したら、生成ボタンをクリックしてください！"),
@@ -311,7 +311,7 @@ def index4() -> rx.Component:
             rx.vstack(
                 UIHelper.create_page_heading("チージェネ"),
                 UIHelper.create_text(State.generated_name),
-                UIHelper.create_button("更新", href="/index4", font_size="3em", on_click=State.generate_team_name),
+                UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
                 UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
             ),
