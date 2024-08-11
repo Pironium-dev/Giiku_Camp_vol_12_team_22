@@ -26,7 +26,6 @@ HOKKAIDO_TOHOKU_OPTIONS = (
 )
 KANTOU_OPTIONS = (("",), ("",), ("",))
 KANSAI_OPTIONS = (("",), ("",), ("",))
-KYUUSYUU_OPTIONS = (("",), ("",), ("",))
 THUUGOKU_SIKOKU_OPTIONS = (("",), ("",), ("",))
 THUUBU_OPTIONS = (("",), ("",), ("",))
 KYUSHU_OPTIONS = (("暖かい", "熊本の"), ("ハウステンボス", "マンゴー"), ("の湯", "島"))
