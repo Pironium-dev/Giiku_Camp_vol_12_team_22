@@ -268,9 +268,10 @@ def index2() -> rx.Component:
             rx.vstack(
                 UIHelper.create_page_heading("使用言語を選択してください"),
                 UIHelper.create_text("以下の選択肢から使用言語を選んでください。"),
-                rx.hstack(
-                    *[UIHelper.create_button(adjective) for adjective in adjectives],
-                    spacing="1em"
+                rx.select(
+                    adjectives,
+                    placeholder="Select favorite language",
+                    label="language",
                 ),
                 UIHelper.create_button("次へ", href="/index3", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
@@ -288,11 +289,10 @@ def index3() -> rx.Component:
             rx.vstack(
                 UIHelper.create_page_heading("地方を選択してください"),
                 UIHelper.create_text("以下の選択肢から地方を選んでください。"),
-                rx.hstack(
-                    *[UIHelper.create_button(prefecture) for prefecture in prefectures],
-                    spacing="1em",
-                    wrap="wrap",
-                    justify="center"
+                rx.select(
+                    prefectures,
+                    placeholder="Select favorite area",
+                    label="area",
                 ),
                 UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
