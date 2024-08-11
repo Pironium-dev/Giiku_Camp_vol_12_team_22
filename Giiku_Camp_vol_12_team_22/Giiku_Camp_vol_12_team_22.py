@@ -309,7 +309,7 @@ def index4() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("チーム名生成"),
+                UIHelper.create_page_heading("チージェネ"),
                 UIHelper.create_text(State.generated_name),
                 UIHelper.create_button("更新", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
