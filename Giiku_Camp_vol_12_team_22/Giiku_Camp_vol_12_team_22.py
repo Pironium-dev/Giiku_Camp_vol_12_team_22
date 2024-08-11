@@ -81,12 +81,10 @@ class State(rx.State):
     ]
 
     def generate_team_name(self):
-        self._add_options_of_language("Python")
         if random.randint(0, 3) == 0:
             self.generated_name = self._choice(1) + self._choice(2)
         else:
             self.generated_name = self._choice(0) + self._choice(1) + self._choice(2)
-        print(self.generated_name)  ## デバッグ用
 
     def _choice(self, index):
         if index == 0:
@@ -168,12 +166,14 @@ class State(rx.State):
                     THUUBU_OPTIONS,
                 ):
                     i.extend(j)
+    def do_nothing(self):
+        pass
 
 class UIHelper:
     """共通のUI要素を作成するヘルパークラス"""
 
     @staticmethod
-    def create_button(text, href=None, bg="blue.600", font_size="1.5em"):
+    def create_button(text, href=None, bg="blue.600", font_size="1.5em", *, on_click=State.do_nothing):
         """共通のボタンスタイルを適用する"""
         button = rx.button(
             text,
@@ -185,7 +185,8 @@ class UIHelper:
             box_shadow="0px 4px 15px rgba(0, 0, 0, 0.3)",
             transition="transform 0.2s ease, background-color 0.2s ease",
             _hover={"bg": "blue.500", "transform": "scale(1.05)"},
-            _active={"bg": "blue.700", "transform": "scale(1.05)"}
+            _active={"bg": "blue.700", "transform": "scale(1.05)"},
+            on_click=on_click
         )
         return rx.link(button, href=href) if href else button
 
@@ -293,27 +294,26 @@ def index3() -> rx.Component:
                     wrap="wrap",
                     justify="center"
                 ),
-                UIHelper.create_button("生成", href="/index4", font_size="3em"),
+                UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリッしてください！"),
+                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
             ),
         ),
         padding="4em",
         height="100vh",
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
     )
-    
-    
+
 def index4() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("せいせい"),
-                UIHelper.create_text("生成しました。"),
-                UIHelper.create_button("更新", href="/index4", font_size="3em"),
+                UIHelper.create_page_heading("チーム名生成"),
+                UIHelper.create_text(State.generated_name),
+                UIHelper.create_button("更新", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリッしてください！"),
+                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
             ),
         ),
         padding="4em",
