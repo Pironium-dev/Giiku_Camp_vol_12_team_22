@@ -243,7 +243,7 @@ class UIHelper:
 
 # Prefecture list
 prefectures = [
-    '北海道、東北', '関東', '中部', '関西', '中国、四国', '九州']
+    '北海道・東北', '関東', '中部', '関西', '中国・四国', '九州']
 
 def index1() -> rx.Component:
     return rx.container(
@@ -261,7 +261,7 @@ def index1() -> rx.Component:
     )
 
 def index2() -> rx.Component:
-    adjectives = ['C', 'Python', 'JAVA', 'JAVASCRIPT', 'GO']
+    adjectives = ['C', 'Python', 'Java', 'JavaScript', 'Go']
     
     return rx.container(
         rx.center(
