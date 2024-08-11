@@ -291,7 +291,6 @@ def index3() -> rx.Component:
                 UIHelper.create_text("以下の選択肢から地方を選んでください。"),
                 rx.hstack(
                     *[UIHelper.create_button(prefecture) for prefecture in prefectures],
-                    spacing="1em",
                     wrap="wrap",
                     justify="center"
                 ),
