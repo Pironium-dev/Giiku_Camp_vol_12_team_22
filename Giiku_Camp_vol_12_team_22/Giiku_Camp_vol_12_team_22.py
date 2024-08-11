@@ -289,10 +289,10 @@ def index3() -> rx.Component:
             rx.vstack(
                 UIHelper.create_page_heading("地方を選択してください"),
                 UIHelper.create_text("以下の選択肢から地方を選んでください。"),
-                rx.hstack(
-                    *[UIHelper.create_button(prefecture) for prefecture in prefectures],
-                    wrap="wrap",
-                    justify="center"
+                rx.select(
+                    prefectures,
+                    placeholder="Select favorite area",
+                    label="area",
                 ),
                 UIHelper.create_button("次へ", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
