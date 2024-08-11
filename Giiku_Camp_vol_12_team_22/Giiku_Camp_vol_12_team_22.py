@@ -1,34 +1,5 @@
 import reflex as rx
 from rxconfig import config
-import random
-
-
-class AppState(rx.State):
-    generated_name = ''
-    selected_hobby = ''
-    selected_prefecture = ''  # 選択された都道府県を格納する変数
-
-## 質問により追加される単語
-PYTHON_OPTIONS = (
-    ("Pythonicな",),
-    ("蛇使いの", "空飛ぶモンティ・パイソン好きの"),
-    ("とぐろ", "イッツマン"),
-)
-C_OPTIONS = (("",), ("",), ("",))
-JAVA_OPTIONS = (("ジャワ島生まれ",), ("コーヒー好き",), ("仮想マシン",))
-JAVASCRIPT_OPTIONS = (("",), ("",), ("",))
-GO_OPTIONS = (("",), ("",), ("",))
-
-HOKKAIDO_TOHOKU_OPTIONS = (
-    ("海産物系の", "しばれる", "めんこい"),
-    ("木彫りの", "牛乳製の", "道産子"),
-    ("熊", "シャケ", "ぼっこ", "マグロ"),
-)
-KANTOU_OPTIONS = (("ディズニー","都会の","中華街"), ("",), ("",))
-KANSAI_OPTIONS = (("USJ","道頓堀"), ("",), ("",))
-THUUGOKU_SIKOKU_OPTIONS = (("",), ("",), ("",))
-THUUBU_OPTIONS = (("",), ("",), ("",))
-KYUSHU_OPTIONS = (("暖かい", "熊本の"), ("ハウステンボス", "マンゴー"), ("の湯", "島"))
 
 
 class State(rx.State):
