@@ -81,92 +81,6 @@ class State(rx.State):
     ]
 
     def generate_team_name(self):
-        if random.randint(0, 3) == 0:
-            self.generated_name = self._choice(1) + self._choice(2)
-        else:
-            self.generated_name = self._choice(0) + self._choice(1) + self._choice(2)
-
-    def _choice(self, index):
-        if index == 0:
-            option = random.choice(self.head_options)
-        elif index == 1:
-            option = random.choice(self.middle_options)
-        else:
-            option = random.choice(self.tail_options)
-        return option
-
-    def _add_options_of_language(self, l: str):
-        match l:
-            case "Python":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    PYTHON_OPTIONS,
-                ):
-                    i.extend(j)
-            case "C":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    C_OPTIONS,
-                ):
-                    i.extend(j)
-            case "Java":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    JAVA_OPTIONS,
-                ):
-                    i.extend(j)
-            case "JavaScript":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    JAVASCRIPT_OPTIONS,
-                ):
-                    i.extend(j)
-            case "Go":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    GO_OPTIONS,
-                ):
-                    i.extend(j)
-
-    def _add_options_of_region(self, r: str):
-        match r:
-            case "北海道・東北":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    HOKKAIDO_TOHOKU_OPTIONS,
-                ):
-                    i.extend(j)
-            case "関東":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    KANTOU_OPTIONS,
-                ):
-                    i.extend(j)
-            case "関西":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    KANSAI_OPTIONS,
-                ):
-                    i.extend(j)
-            case "九州":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    KYUSHU_OPTIONS,
-                ):
-                    i.extend(j)
-            case "中国・四国":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    THUUGOKU_SIKOKU_OPTIONS,
-                ):
-                    i.extend(j)
-            case "中部":
-                for i, j in zip(
-                    (self.head_options, self.middle_options, self.tail_options),
-                    THUUBU_OPTIONS,
-                ):
-                    i.extend(j)
-    def do_nothing(self):
         pass
 
 class UIHelper:
@@ -243,7 +157,7 @@ class UIHelper:
 
 # Prefecture list
 prefectures = [
-    '北海道・東北', '関東', '中部', '関西', '中国・四国', '九州']
+    '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県']
 
 def index1() -> rx.Component:
     return rx.container(
@@ -258,20 +172,24 @@ def index1() -> rx.Component:
         padding="4em",
         height="100vh",
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
+
+def index() -> rx.Component:
+    return rx.container(
+        rx.color_mode.button(position="top-right"),
+        rx.button("test", on_click=State.generate_team_name),
     )
 
 def index2() -> rx.Component:
-    adjectives = ['C', 'Python', 'Java', 'JavaScript', 'Go']
+    adjectives = ['Dynamic', 'Awesome', 'Creative', 'Innovative', 'Agile']
     
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("使用言語を選択してください"),
-                UIHelper.create_text("以下の選択肢から使用言語を選んでください。"),
-                rx.select(
-                    adjectives,
-                    placeholder="Select favorite language",
-                    label="language",
+                UIHelper.create_page_heading("趣味を選択してください"),
+                UIHelper.create_text("以下の選択肢から趣味を選んでください。"),
+                rx.hstack(
+                    *[UIHelper.create_button(adjective) for adjective in adjectives],
+                    spacing="1em"
                 ),
                 UIHelper.create_button("次へ", href="/index3", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
@@ -294,10 +212,26 @@ def index3() -> rx.Component:
                     wrap="wrap",
                     justify="center"
                 ),
-                UIHelper.create_button("次へ", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
+                UIHelper.create_rule_box("都道府県を選択したら、戻るボタンをクリッしてください！"),
+            ),
+        ),
+        padding="4em",
+        height="100vh",
+        bg="linear-gradient(to right, #4facfe, #00f2fe)",
+    )
+    
+    
+def index4() -> rx.Component:
+    return rx.container(
+        rx.center(
+            rx.vstack(
+                UIHelper.create_page_heading("せいせい"),
+                UIHelper.create_text("生成しました。"),
+                UIHelper.create_button("更新", href="/index4", font_size="3em"),
+                UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
+                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリッしてください！"),
             ),
         ),
         padding="4em",
@@ -305,21 +239,7 @@ def index3() -> rx.Component:
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
     )
 
-def index4() -> rx.Component:
-    return rx.container(
-        rx.center(
-            rx.vstack(
-                UIHelper.create_page_heading("チーム名生成"),
-                UIHelper.create_text(State.generated_name),
-                UIHelper.create_button("更新", href="/index4", font_size="3em", on_click=State.generate_team_name),
-                UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
-            ),
-        ),
-        padding="4em",
-        height="100vh",
-        bg="linear-gradient(to right, #4facfe, #00f2fe)",
-    )
+
 
 
 app = rx.App()
@@ -327,4 +247,5 @@ app.add_page(index1, route="/index1")
 app.add_page(index1, route="/")
 app.add_page(index2, route="/index2")
 app.add_page(index3, route="/index3")
-app.add_page(index4, route="/index4")
+
+
