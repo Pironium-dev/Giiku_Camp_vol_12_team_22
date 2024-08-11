@@ -308,7 +308,6 @@ def index3() -> rx.Component:
                     on_change=State.change_region
                 ),
                 UIHelper.create_button("次へ", href="/index4", font_size="2em", on_click=State.generate_team_name),
-                UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
                 UIHelper.create_rule_box("地方を選択したら「次へ」ボタンを押してください！"),
