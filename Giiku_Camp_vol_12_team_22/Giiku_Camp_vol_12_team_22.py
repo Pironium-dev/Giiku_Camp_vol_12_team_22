@@ -81,12 +81,10 @@ class State(rx.State):
     ]
 
     def generate_team_name(self):
-        self._add_options_of_language("Python")
         if random.randint(0, 3) == 0:
             self.generated_name = self._choice(1) + self._choice(2)
         else:
             self.generated_name = self._choice(0) + self._choice(1) + self._choice(2)
-        print(self.generated_name)  ## デバッグ用
 
     def _choice(self, index):
         if index == 0:
@@ -168,12 +166,14 @@ class State(rx.State):
                     THUUBU_OPTIONS,
                 ):
                     i.extend(j)
+    def do_nothing(self):
+        pass
 
 class UIHelper:
     """共通のUI要素を作成するヘルパークラス"""
 
     @staticmethod
-    def create_button(text, href=None, bg="blue.600", font_size="1.5em"):
+    def create_button(text, href=None, bg="blue.600", font_size="1.5em", *, on_click=State.do_nothing):
         """共通のボタンスタイルを適用する"""
         button = rx.button(
             text,
@@ -185,7 +185,8 @@ class UIHelper:
             box_shadow="0px 4px 15px rgba(0, 0, 0, 0.3)",
             transition="transform 0.2s ease, background-color 0.2s ease",
             _hover={"bg": "blue.500", "transform": "scale(1.05)"},
-            _active={"bg": "blue.700", "transform": "scale(1.05)"}
+            _active={"bg": "blue.700", "transform": "scale(1.05)"},
+            on_click=on_click
         )
         return rx.link(button, href=href) if href else button
 
@@ -242,7 +243,7 @@ class UIHelper:
 
 # Prefecture list
 prefectures = [
-    '北海道、東北', '関東', '中部', '関西', '中国、四国', '九州']
+    '北海道・東北', '関東', '中部', '関西', '中国・四国', '九州']
 
 def index1() -> rx.Component:
     return rx.container(
@@ -257,24 +258,20 @@ def index1() -> rx.Component:
         padding="4em",
         height="100vh",
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
-
-def index() -> rx.Component:
-    return rx.container(
-        rx.color_mode.button(position="top-right"),
-        rx.button("test", on_click=State.generate_team_name),
     )
 
 def index2() -> rx.Component:
-    adjectives = ['C', 'Python', 'JAVA', 'JAVASCRIPT', 'GO']
+    adjectives = ['C', 'Python', 'Java', 'JavaScript', 'Go']
     
     return rx.container(
         rx.center(
             rx.vstack(
                 UIHelper.create_page_heading("使用言語を選択してください"),
                 UIHelper.create_text("以下の選択肢から使用言語を選んでください。"),
-                rx.hstack(
-                    *[UIHelper.create_button(adjective) for adjective in adjectives],
-                    spacing="1em"
+                rx.select(
+                    adjectives,
+                    placeholder="Select favorite language",
+                    label="language",
                 ),
                 UIHelper.create_button("次へ", href="/index3", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
@@ -292,33 +289,31 @@ def index3() -> rx.Component:
             rx.vstack(
                 UIHelper.create_page_heading("地方を選択してください"),
                 UIHelper.create_text("以下の選択肢から地方を選んでください。"),
-                rx.hstack(
-                    *[UIHelper.create_button(prefecture) for prefecture in prefectures],
-                    spacing="1em",
-                    wrap="wrap",
-                    justify="center"
+                rx.select(
+                    prefectures,
+                    placeholder="Select favorite area",
+                    label="area",
                 ),
-                UIHelper.create_button("生成", href="/index4", font_size="3em"),
+                UIHelper.create_button("次へ", href="/index4", font_size="2em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリッしてください！"),
+                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
             ),
         ),
         padding="4em",
         height="100vh",
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
     )
-    
-    
+
 def index4() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("せいせい"),
-                UIHelper.create_text("生成しました。"),
-                UIHelper.create_button("更新", href="/index4", font_size="3em"),
+                UIHelper.create_page_heading("チーム名生成"),
+                UIHelper.create_text(State.generated_name),
+                UIHelper.create_button("更新", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリッしてください！"),
+                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
             ),
         ),
         padding="4em",
@@ -327,12 +322,9 @@ def index4() -> rx.Component:
     )
 
 
-
 app = rx.App()
 app.add_page(index1, route="/index1")
+app.add_page(index1, route="/")
 app.add_page(index2, route="/index2")
 app.add_page(index3, route="/index3")
 app.add_page(index4, route="/index4")
-
-app.add_page(index)
-
