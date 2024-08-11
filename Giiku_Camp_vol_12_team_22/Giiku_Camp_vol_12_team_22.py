@@ -24,8 +24,8 @@ HOKKAIDO_TOHOKU_OPTIONS = (
     ("木彫りの", "牛乳製の", "道産子"),
     ("熊", "シャケ", "ぼっこ", "マグロ"),
 )
-KANTOU_OPTIONS = (("",), ("",), ("",))
-KANSAI_OPTIONS = (("",), ("",), ("",))
+KANTOU_OPTIONS = (("ディズニー","都会の","中華街"), ("",), ("",))
+KANSAI_OPTIONS = (("USJ","道頓堀"), ("",), ("",))
 THUUGOKU_SIKOKU_OPTIONS = (("",), ("",), ("",))
 THUUBU_OPTIONS = (("",), ("",), ("",))
 KYUSHU_OPTIONS = (("暖かい", "熊本の"), ("ハウステンボス", "マンゴー"), ("の湯", "島"))
