@@ -135,7 +135,7 @@ def index3() -> rx.Component:
                 ),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("都道府県を選択したら、戻るボタンをクリックしてください！"),
+                UIHelper.create_rule_box("都道府県を選択したら、戻るボタンをクリッしてください！"),
             ),
         ),
         padding="4em",
