@@ -14,10 +14,10 @@ PYTHON_OPTIONS = (
     ("蛇使いの", "空飛ぶモンティ・パイソン好きの"),
     ("とぐろ", "イッツマン"),
 )
-C_OPTIONS = (("",), ("",), ("",))
-JAVA_OPTIONS = (("ジャワ島生まれ",), ("コーヒー好き",), ("仮想マシン",))
-JAVASCRIPT_OPTIONS = (("",), ("",), ("",))
-GO_OPTIONS = (("",), ("",), ("",))
+C_OPTIONS = (("昔ながらの",), ("ベル研究所",), ("++","#"))
+JAVA_OPTIONS = (("ジャワ島生まれの",), ("コーヒー好き",), ("仮想マシン",))
+JAVASCRIPT_OPTIONS = (("Javaとは別物 ",), ("React",), (".js",))
+GO_OPTIONS = (("Go!Go!",), ("Gopher",), (".go",))
 
 HOKKAIDO_TOHOKU_OPTIONS = (
     ("海産物系の", "しばれる", "めんこい"),
