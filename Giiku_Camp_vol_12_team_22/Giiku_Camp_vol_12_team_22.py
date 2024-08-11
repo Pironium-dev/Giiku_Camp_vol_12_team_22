@@ -260,10 +260,10 @@ def index1() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("チーム名生成アプリ"),
+                UIHelper.create_page_heading("チージェネ"),
                 UIHelper.create_text("ボタンをクリックして、あなたのチーム名を生成しましょう！"),
                 UIHelper.create_button("スタート", href="/index2", font_size="2em"),
-                UIHelper.create_rule_box(""),
+                UIHelper.create_rule_box("このwebアプリは全画面で表示してください。"),
             ),
         ),
         padding="4em",
@@ -277,7 +277,7 @@ def index2() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("使用言語を選択してください"),
+                UIHelper.create_page_heading("チージェネ"),
                 UIHelper.create_text("以下の選択肢から使用言語を選んでください。"),
                 rx.select(
                     adjectives,
@@ -287,7 +287,7 @@ def index2() -> rx.Component:
                 ),
                 UIHelper.create_button("次へ", href="/index3", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box(""),
+                UIHelper.create_rule_box("使用言語を選択したら「次へ」ボタンを押してください！"),
             ),
         ),
         padding="4em",
@@ -299,7 +299,7 @@ def index3() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("地方を選択してください"),
+                UIHelper.create_page_heading("チージェネ"),
                 UIHelper.create_text("以下の選択肢から地方を選んでください。"),
                 rx.select(
                     prefectures,
@@ -307,10 +307,11 @@ def index3() -> rx.Component:
                     label="area",
                     on_change=State.change_region
                 ),
+                UIHelper.create_button("次へ", href="/index4", font_size="2em", on_click=State.generate_team_name),
                 UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("戻る", href="/index2", font_size="2em"),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
+                UIHelper.create_rule_box("地方を選択したら「次へ」ボタンを押してください！"),
             ),
         ),
         padding="4em",
@@ -322,11 +323,11 @@ def index4() -> rx.Component:
     return rx.container(
         rx.center(
             rx.vstack(
-                UIHelper.create_page_heading("チーム名生成"),
+                UIHelper.create_page_heading("チージェネ"),
                 UIHelper.create_text(State.generated_name),
-                UIHelper.create_button("更新", href="/index4", font_size="3em", on_click=State.generate_team_name),
+                UIHelper.create_button("生成", href="/index4", font_size="3em", on_click=State.generate_team_name),
                 UIHelper.create_button("最初に戻る", href="/index1", bg="gray.600"),
-                UIHelper.create_rule_box("地方を選択したら、戻るボタンをクリックしてください！"),
+                UIHelper.create_rule_box("「生成」ボタンを押すとチーム名が生成されます！"),
             ),
         ),
         padding="4em",
