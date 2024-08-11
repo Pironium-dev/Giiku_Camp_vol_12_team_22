@@ -5,8 +5,17 @@ from rxconfig import config
 
 ## 質問により追加される単語
 PYTHON_OPTIONS = (('Pythonicな',), ('蛇使いの', '空飛ぶモンティ・パイソン好きの'), ('とぐろ', 'イッツマン'))
-HOKKAIDO_OPTIONS = (('海産物系の', ), ('木彫りの', '牛乳製の', '道産子'), ('熊', 'シャケ', 'ぼっこ', 'マグロ'))
+C_OPTIONS = (('', ), ('', ), ('', ))
+JAVA_OPTIONS = (('ジャワ島生まれ', ), ('コーヒー好き', ), ('仮想マシン',))
+JAVASCRIPT_OPTIONS = (('', ), ('', ), ('', ))
+GO_OPTIONS = (('', ), ('', ), ('', ))
 
+HOKKAIDO_TOHOKU_OPTIONS = (('海産物系の', 'しばれる', 'めんこい'), ('木彫りの', '牛乳製の', '道産子'), ('熊', 'シャケ', 'ぼっこ', 'マグロ'))
+KANTOU_OPTIONS = (('', ), ('', ), ('', ))
+KANSAI_OPTIONS = (('', ), ('', ), ('', ))
+KYUUSYUU_OPTIONS = (('', ), ('', ), ('', ))
+THUUGOKU_SIKOKU_OPTIONS = (('', ), ('', ), ('', ))
+THUUBU_OPTIONS = (('', ), ('', ), ('', ))
 KYUSHU_OPTIONS = (('暖かい', '熊本の'), ('ハウステンボス', 'マンゴー'), ('の湯', '島'))
 
 class State(rx.State):
@@ -39,30 +48,38 @@ class State(rx.State):
                 for i, j in zip((self.head_options, self.middle_options, self.tail_options), PYTHON_OPTIONS):
                     i.extend(j)
             case 'C':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), C_OPTIONS):
+                    i.extend(j)
             case 'Java':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), JAVA_OPTIONS):
+                    i.extend(j)
             case 'JavaScript':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), JAVASCRIPT_OPTIONS):
+                    i.extend(j)
             case 'Go':
-                pass
-    
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), GO_OPTIONS):
+                    i.extend(j)
+
     def _add_options_of_region(self, r:str):
         match r:
             case '北海道・東北':
-                for i, j in zip((self.head_options, self.middle_options, self.tail_options), HOKKAIDO_OPTIONS):
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), HOKKAIDO_TOHOKU_OPTIONS):
                     i.extend(j)
             case '関東':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), KANTOU_OPTIONS):
+                    i.extend(j)
             case '関西':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), KANSAI_OPTIONS):
+                    i.extend(j)
             case '九州':
                 for i, j in zip((self.head_options, self.middle_options, self.tail_options), KYUSHU_OPTIONS):
                     i.extend(j)
             case '中国・四国':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), THUUGOKU_SIKOKU_OPTIONS):
+                    i.extend(j)
             case '中部':
-                pass
+                for i, j in zip((self.head_options, self.middle_options, self.tail_options), THUUBU_OPTIONS):
+                    i.extend(j)
 
 def index() -> rx.Component:
     return rx.container(
