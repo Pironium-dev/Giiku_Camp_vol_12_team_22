@@ -257,11 +257,6 @@ def index1() -> rx.Component:
         padding="4em",
         height="100vh",
         bg="linear-gradient(to right, #4facfe, #00f2fe)",
-
-def index() -> rx.Component:
-    return rx.container(
-        rx.color_mode.button(position="top-right"),
-        rx.button("test", on_click=State.generate_team_name),
     )
 
 def index2() -> rx.Component:
@@ -327,12 +322,9 @@ def index4() -> rx.Component:
     )
 
 
-
 app = rx.App()
 app.add_page(index1, route="/index1")
+app.add_page(index1, route="/")
 app.add_page(index2, route="/index2")
 app.add_page(index3, route="/index3")
 app.add_page(index4, route="/index4")
-
-app.add_page(index)
-
